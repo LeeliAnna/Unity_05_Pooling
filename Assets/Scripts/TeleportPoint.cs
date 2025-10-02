@@ -4,6 +4,11 @@ public class TeleportPoint : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject, 0.25f);
+        // cherche un composant qui implémente l'interfece. TryGetComponent retourne un bool
+        // out permet de n'instancier la variable qui si la méthode est vrais
+        if (other.TryGetComponent(out CreatureBehavior creature))
+        {
+            creature.Teleport();
+        }
     }
 }
